@@ -11,21 +11,24 @@ database.authenticate()
 
 //schema definition
 const User = database.define('users', {
-    name: Sequelize.String,
-    email: Sequelize.STRING,
+    name: Sequelize.STRING,
+    email: {
+        type: Sequelize.STRING,
+        unique: true
+    },
     password: Sequelize.STRING,
 })
 const Direction = database.define('directions', {
-    destination: Sequelize.String,
+    destination: Sequelize.STRING,
     hash: Sequelize.STRING,
 })
 //for migration purpose
-// database.sync()
-//     .then(e => {
-//         console.log("Database synced");
-//     })
-//     .catch(e => {
-//         console.error("Database sync Failed");
-//     })
+database.sync({ force: true })
+    .then(e => {
+        console.log("Database synced");
+    })
+    .catch(e => {
+        console.error("Database sync Failed");
+    })
 
-module.exports = { database, User, Destination }
+module.exports = { database, User, Direction }

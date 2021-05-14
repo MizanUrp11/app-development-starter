@@ -22,13 +22,13 @@ const Direction = database.define('directions', {
     destination: Sequelize.STRING,
     hash: Sequelize.STRING,
 })
-//for migration purpose
-database.sync({ force: true })
-    .then(e => {
-        console.log("Database synced");
-    })
-    .catch(e => {
-        console.error("Database sync Failed");
-    })
+// for migration purpose
+// database.sync({ force: true })
+//     .then(e => {
+//         console.log("Database synced");
+//     })
+//     .catch(e => {
+//         console.error("Database sync Failed");
+//     })
 
 module.exports = { database, User, Direction }

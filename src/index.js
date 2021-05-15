@@ -7,13 +7,17 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
 const signup = require("./controllers/signup");
 const login = require("./controllers/login");
+const auth = require("./middlewares/auth");
+
+//Middlewares
+app.use(bodyParser.json());
+app.use('/api',auth);
 
 //Routes
-app.use(signup);
 app.use(login);
+app.use(signup);
 
 const _port = process.env.PORT || 4000;
-app.listen(_port,e=>console.log(`Server Started at port ${_port}`));
+app.listen(_port, e => console.log(`Server Started at port ${_port}`));

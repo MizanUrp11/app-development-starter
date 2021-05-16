@@ -12,8 +12,10 @@ const login = require("./controllers/login");
 const auth = require("./middlewares/auth");
 const error_handler = require("./middlewares/error_handler");
 const redirects = require("./controllers/redirects");
+const cors = require("./middlewares/cors");
 
 //Middlewares
+app.use(cors);
 app.use(bodyParser.json());
 app.use('/api',auth);
 

@@ -2,7 +2,7 @@
  * Database connection
  * Model Definition
  */
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const CONNECTION_STRING = process.env.DATABASE || "postgres://postgres:12345678@localhost:5432/lwhh"
 const database = new Sequelize(CONNECTION_STRING);
 database.authenticate()
@@ -19,10 +19,10 @@ const User = database.define('users', {
     password: Sequelize.STRING,
 })
 const Direction = database.define('directions', {
+    user_id: Sequelize.NUMERIC,
     destination: Sequelize.STRING,
     hash: Sequelize.STRING,
 })
-// for migration purpose
 // database.sync({ force: true })
 //     .then(e => {
 //         console.log("Database synced");

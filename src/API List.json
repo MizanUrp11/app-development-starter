@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "5794108a-941a-4c1f-a2de-722a50068b04",
+		"name": "web app starter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST API",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImFiY2QiLCJlbWFpbCI6ImhlbGxvQHRlc3QuY29tIiwiaWF0IjoxNjIxMTUwNzcxfQ.vtYmQbSqYuXoXSFWIXUNznV9pyFtiuiMGbMQPvDfXEc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\":\"www.bing.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/api/v1/redirects",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"redirects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"hello@test.com\",\r\n    \"password\": \"1234566\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SIGN UP API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"abcd\",\r\n    \"email\": \"hello@test.com\",\r\n    \"password\": \"1234566\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MIDDLEWARE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6ImFiY2QiLCJlbWFpbCI6ImhlbGxvQHRlc3QuY29tIiwiaWF0IjoxNjIxMTQ4OTQ1fQ.a1z9QB9QWIEVhI32TWZi5uqj2RMKFte91-ieGbjxWwY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/api/mylist",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"mylist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImFiY2QiLCJlbWFpbCI6ImhlbGxvQHRlc3QuY29tIiwiaWF0IjoxNjIxMTUwNzcxfQ.vtYmQbSqYuXoXSFWIXUNznV9pyFtiuiMGbMQPvDfXEc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/api/v1/redirects",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"redirects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

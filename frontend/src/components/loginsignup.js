@@ -11,7 +11,8 @@ class Loginsignup extends Component {
         isSignup: true,
         fullname: "",
         email: "",
-        password: ""
+        password: "",
+        loginSuccess: false
     }
     showSignupForm = () => {
         this.setState({ isSignup: true });
@@ -29,9 +30,9 @@ class Loginsignup extends Component {
         })
     }
     loginSignup = () => {
+        let { email, password } = this.state;
         if (this.state.isSignup) {
             if (this.state.fullname && this.state.email && this.state.password) {
-                let { email, password } = this.state;
                 let name = this.state.fullname;
                 axios.post(`${values.BASE}/signup`, { name, email, password })
                     .then(d => {
@@ -52,6 +53,21 @@ class Loginsignup extends Component {
                     })
             } else {
                 alert("Parameter missing.");
+            }
+        } else {
+            axios.post(`${values.BASE}/login`, { email, password })
+                .then(d => {
+                    let {token} = d.data;
+                    // debugger;
+                    this.setState({ loginSuccess: true });
+                })
+                .catch(e => {
+                    alert("login unsuccessful.");
+                })
+            if (this.state.email && this.state.password){
+
+            }else{
+                alert("Parameter missing for login.");
             }
         }
     }

@@ -1,51 +1,91 @@
 import { Component } from 'react';
+import "../bootstrap.min.css";
+import "animate.css";
+import "../style.css";
+import axios from 'axios';
+import values from '../values';
+
+
 class Loginsignup extends Component {
     state = {
-        isSignup: false,
+        isSignup: true,
         fullname: "",
         email: "",
         password: ""
     }
     showSignupForm = () => {
-        this.setState({ isSignup: true })
+        this.setState({ isSignup: true });
     }
     showLogin = () => {
-        this.setState({ isSignup: false })
+        this.setState({ isSignup: false });
     }
     updateStateValue = (e) => {
         let tgt = e.target;
         let stateName = tgt.name;
         let val = tgt.value;
-        debugger;
+        //debugger;
         this.setState({
             [stateName]: val
         })
     }
+    loginSignup = () => {
+        if (this.state.isSignup) {
+            if (this.state.fullname && this.state.email && this.state.password) {
+                let { email, password } = this.state;
+                let name = this.state.fullname;
+                axios.post(`${values.BASE}/signup`, { name, email, password })
+                    .then(d => {
+                        // debugger;
+                        alert(`${d.data.message}`);
+                        this.setState({ isSignup: false })
+                    })
+                    .catch(e => {
+                        // debugger;
+                        console.log("Sign up Error! please try again");
+                    })
+                    .then(d => {
+                        this.setState({
+                            fullname: "",
+                            email: "",
+                            password: ""
+                        })
+                    })
+            } else {
+                alert("Parameter missing.");
+            }
+        }
+    }
     render() {
         return (
-            <div style={styles.container}>
-                <div className="loginsignup">
-                    <input onChange={this.updateStateValue} style={{ ...styles.input, display: this.state.isSignup ? "block" : "none" }} type="text" name="fullname" placeholder="Enter Name" />
-                    <input onChange={this.updateStateValue} style={styles.input} type="email" name="email" placeholder="Enter Email" />
-                    <input onChange={this.updateStateValue} style={styles.input} type="password" name="password" placeholder="Enter Password" />
+            <div className="container full-height">
+                <div className="row full-height col-md-6 offset-md-3 justify-content-center align-items-center">
+                    <div className={"p-4", "bg-light", "border", "border-1", "rounded", this.state.isSignup ? "animate__animated animate__bounceInLeft" : "animate__animated animate__bounceInRight"}>
+                        <h2 className="mb-4" id="Sign-Up-heading">{this.state.isSignup ? "Sign up" : "Login"}</h2>
+                        <div className="mb-3" style={{ display: this.state.isSignup ? "block" : "none" }}>
+                            <input onChange={this.updateStateValue} name="fullname" className="form-control" type="text" placeholder="Enter Name" />
+                        </div>
+                        <div class="mb-3">
+                            <input onChange={this.updateStateValue} name="email" className="form-control" type="email" placeholder="Enter Email" />
+                        </div>
+                        <div class="mb-3">
+                            <input onChange={this.updateStateValue} name="password" className="form-control" type="password" placeholder="Enter Password" />
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button onClick={this.loginSignup} className="btn btn-primary" type="button">{this.state.isSignup ? "Sign up" : "Login"}</button>
+                            <button style={{ display: this.state.isSignup ? "none" : "block" }} onClick={this.showSignupForm} className="btn btn-primary" type="button">Sign Up Now →</button>
+                            <button style={{ display: this.state.isSignup ? "block" : "none" }} onClick={this.showLogin} className="btn btn-primary" type="button">← Go Back To Login</button>
+                        </div>
+                    </div>
                 </div>
-                <div style={{ display: this.state.isSignup ? "none" : "block" }} onClick={this.showSignupForm}>Sign up now</div>
-                <div style={{ display: this.state.isSignup ? "block" : "none" }} onClick={this.showLogin}>Go back to Login</div>
             </div>
-        );
-    }
-}
 
-const styles = {
-    container: {
-        fontSize: 24,
-        color: "red"
-    },
-    input: {
-        fontSize: 18,
-        color: "blue",
-        display: "block",
-        margin: 20
+
+
+
+
+
+
+        );
     }
 }
 

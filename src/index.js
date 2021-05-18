@@ -6,17 +6,18 @@
  */
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
+const bp = require("body-parser");
 const signup = require("./controllers/signup");
 const login = require("./controllers/login");
 const auth = require("./middlewares/auth");
 const error_handler = require("./middlewares/error_handler");
 const redirects = require("./controllers/redirects");
-const cors = require("./middlewares/cors");
+// const cors = require("./middlewares/cors");
 const path = require("path");
+const cors = require("cors")
 //Middlewares
-app.use(cors);
-app.use(bodyParser.json());
+app.use(cors());
+app.use(bp.json());
 app.use(express.static(path.resolve(__dirname,"../frontend/public")));
 app.use('/api',auth);
 

@@ -4,6 +4,7 @@ import "animate.css";
 import "../style.css";
 import axios from 'axios';
 import values from '../values';
+import { Redirect } from 'react-router';
 
 
 class Loginsignup extends Component {
@@ -57,21 +58,30 @@ class Loginsignup extends Component {
         } else {
             axios.post(`${values.BASE}/login`, { email, password })
                 .then(d => {
-                    let {token} = d.data;
+                    let token = d.data.token;
                     // debugger;
+                    localStorage.setItem("access_token", token);
                     this.setState({ loginSuccess: true });
                 })
                 .catch(e => {
                     alert("login unsuccessful.");
                 })
-            if (this.state.email && this.state.password){
+            if (this.state.email && this.state.password) {
 
-            }else{
+            } else {
                 alert("Parameter missing for login.");
             }
         }
     }
+    componentWillMount() {
+        if (localStorage.getItem("access_token")) {
+            this.setState({ loginSuccess: true });
+        }
+    }
     render() {
+        if (this.state.loginSuccess) {
+            return (<Redirect to="/" />)
+        }
         return (
             <div className="container full-height">
                 <div className="row full-height col-md-6 offset-md-3 justify-content-center align-items-center">

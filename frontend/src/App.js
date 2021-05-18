@@ -17,12 +17,12 @@ function App() {
 }
 
 function Home() {
-  return (
-    <div>
-      <Link to="/loginsignup">login sign up</Link>
-      <Link to="/urls">Urls</Link>
-    </div>
-  );
+  let token = localStorage.getItem("access_token");
+  if(token){
+    return(<Redirect to="/urls"/>);
+  }else{
+    return(<Redirect to="/loginsignup"/>);
+  }
 }
 
 export default App;

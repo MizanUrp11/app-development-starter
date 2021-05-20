@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Button, Col, Row, Toast } from "react-bootstrap";
+import axios from 'axios';
+import values from '../values';
 
 
 
 class Urls extends Component {
     state = {
         loggedIn: true,
-        show: false,
-        setShow: false
+        loading: false,
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFiY2QiLCJlbWFpbCI6ImhlbGxvQHRlc3QuY29tIiwiaWF0IjoxNjIxMzMzMjUxfQ.qjOzXZz22kPVtiXE9269nCsOSrdFRu90hvkfEtT5sX4"
     }
     componentWillMount() {
         if (!localStorage.getItem("access_token")) {
@@ -16,7 +18,25 @@ class Urls extends Component {
         }
     }
 
-
+    HandleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            // alert("hello");
+            if (e.target.value && e.target.value.match(/^https?:\/\/.{3,}/)) {
+                this.setState({ loading: true });
+                axios.post(`${values.BASE}/api/v1/redirects`, { url: e.target.value }, { headers: { "auth-token": this.state.token } })
+                    .then(d => {
+                        console.log(d);
+                        alert("Direction created");
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+                    .finally(() => {
+                        this.setState({ loading: false });
+                    })
+            }
+        }
+    }
 
     render() {
         if (!this.state.loggedIn) {
@@ -29,7 +49,7 @@ class Urls extends Component {
                     <div className="row bg-light py-3 rounded mb-3">
                         <div className="col-md-12">
                             <div>
-                                <input className="form-control" type="url" placeholder="Enter url and press Enter to shorten." />
+                                <input onKeyUp={this.HandleKeyUp} className="form-control" type="url" placeholder="Enter url and press Enter to shorten." />
                             </div>
                         </div>
                     </div>

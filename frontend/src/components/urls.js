@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { Button, Col, Row, Toast } from "react-bootstrap";
 import axios from 'axios';
 import values from '../values';
 
-
+function Conditional(props) {
+    if (props.condition) {
+        return (
+            <div className={props.className}>
+                {props.children}
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
 
 class Urls extends Component {
     state = {
         loggedIn: true,
         loading: false,
+        newHash: "",
         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFiY2QiLCJlbWFpbCI6ImhlbGxvQHRlc3QuY29tIiwiaWF0IjoxNjIxMzMzMjUxfQ.qjOzXZz22kPVtiXE9269nCsOSrdFRu90hvkfEtT5sX4"
     }
     componentWillMount() {
         if (!localStorage.getItem("access_token")) {
             this.state.loggedIn = false;
         }
+    }
+
+    scheduleClear = () => {
+        this.setState({ newHash: "" });
     }
 
     HandleKeyUp = (e) => {
@@ -27,6 +42,8 @@ class Urls extends Component {
                     .then(d => {
                         console.log(d);
                         alert("Direction created");
+                        this.setState({ newHash: d.data.hash });
+                        setTimeout(this.scheduleClear, 5000);
                     })
                     .catch(e => {
                         console.log(e)
@@ -75,10 +92,10 @@ class Urls extends Component {
                         </div>
                     </div>
 
-                    <div className="alert alert-warning alert-dismissible fade show" style={{ position: "fixed", bottom: 0, right: 0 }} role="alert">
-                        Url Added.
+                    <Conditional condition={this.state.newHash} className="alert alert-warning alert-dismissible fade show" style={{ position: "fixed", bottom: 0, right: 0 }} role="alert">
+                        {`${values.BASE}/${this.state.newHash}`}
                     <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    </Conditional>
                 </div>
 
             </div>

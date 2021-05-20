@@ -1,11 +1,9 @@
 import { Component } from 'react';
-import "../bootstrap.min.css";
 import "animate.css";
 import "../style.css";
 import axios from 'axios';
 import values from '../values';
 import { Redirect } from 'react-router';
-
 
 class Loginsignup extends Component {
     state = {
@@ -13,7 +11,6 @@ class Loginsignup extends Component {
         fullname: "",
         email: "",
         password: "",
-        loginSuccess: false
     }
     showSignupForm = () => {
         this.setState({ isSignup: true });

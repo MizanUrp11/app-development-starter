@@ -2,7 +2,7 @@
 
 import Loginsignup from "./components/loginsignup";
 import Urls from "./components/urls";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 function App() {
   return (

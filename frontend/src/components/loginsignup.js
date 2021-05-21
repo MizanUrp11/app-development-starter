@@ -82,7 +82,7 @@ class Loginsignup extends Component {
         return (
             <div className="container full-height">
                 <div className="row full-height col-md-6 offset-md-3 justify-content-center align-items-center">
-                    <div className={"p-4", "bg-light", "border", "border-1", "rounded", this.state.isSignup ? "animate__animated animate__bounceInLeft" : "animate__animated animate__bounceInRight"}>
+                    <div className="p-4 bg-light border border-1 rounded">
                         <h2 className="mb-4" id="Sign-Up-heading">{this.state.isSignup ? "Sign up" : "Login"}</h2>
                         <div className="mb-3" style={{ display: this.state.isSignup ? "block" : "none" }}>
                             <input onChange={this.updateStateValue} name="fullname" className="form-control" type="text" placeholder="Enter Name" />

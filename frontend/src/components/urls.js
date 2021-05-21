@@ -40,7 +40,7 @@ function UrlComponent(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <a target="_blank" className="h3 text-dark text-decoration-none" href={props.data.destination}>{`${values.BASE}/${props.data.hash}`}</a>
+                    <a target="_blank" rel="noreferrer" className="h3 text-dark text-decoration-none" href={props.data.destination}>{`${values.BASE}/${props.data.hash}`}</a>
                 </div>
             </div>
         </div>

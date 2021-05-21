@@ -15,5 +15,12 @@
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.2"
+  },
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "engines": {
+    "node": "12.19.0",
+    "yarn":"1.22.10"
   }
 }

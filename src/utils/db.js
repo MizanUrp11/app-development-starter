@@ -3,7 +3,7 @@
  * Model Definition
  */
 const { Sequelize } = require('sequelize');
-const CONNECTION_STRING = process.env.DATABASE || "postgres://postgres:12345678@localhost:5432/lwhh"
+const CONNECTION_STRING = process.env.DATABASE_URL || "postgres://postgres:12345678@localhost:5432/lwhh"
 const database = new Sequelize(CONNECTION_STRING);
 database.authenticate()
     .then(e => { console.log("Database connection successful"); })

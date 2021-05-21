@@ -67,7 +67,6 @@ class Urls extends Component {
         axios.get(`${values.BASE}/api/v1/redirects`, { headers: { "auth-token": this.state.token } })
             .then(d => {
                 this.setState({ urlList: d.data });
-                console.log(d.data[0]);
             })
             .catch(e => {
                 console.log(e);

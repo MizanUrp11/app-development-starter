@@ -23,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://lwhh-js.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",

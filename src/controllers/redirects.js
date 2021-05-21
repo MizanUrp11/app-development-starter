@@ -45,7 +45,6 @@ router.get(`/:hash`, async (req, res, next) => {
     }));
     if (dbErr) return next(dbErr);
     if (hashDirection) {
-        // console.log(hashDirection.dataValues);
         res.redirect(301, hashDirection.dataValues.destination);
     } else {
         next();
@@ -53,7 +52,7 @@ router.get(`/:hash`, async (req, res, next) => {
 })
 
 router.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../../frontend/public/index.html"));
+    res.sendFile(path.resolve(__dirname, "../../frontend/build/index.html"));
 })
 
 

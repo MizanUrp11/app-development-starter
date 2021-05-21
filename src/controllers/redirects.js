@@ -29,7 +29,7 @@ router.get("/api/v1/redirects", async (req, res) => {
         where: {
             'user_id': req.user.id
         },
-        limit: 10
+        // limit: 10
     }));
     if (dberr) return next(dberr);
     return res.json(myDirections.map(d => { return { id: d.id, destination: d.destination, hash: d.hash, createdAt: d.createdAt } }))
